@@ -1,0 +1,405 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#050507" />
+  <meta name="description" content="سَمْت | SAMT — الزمالة الدولية لإعداد قادة منظومة الطيران" />
+  <title>سَمْت | SAMT — قُد المستقبل</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+Arabic:wght@400;500;600;700;800&family=Syne:wght@500;600;700;800&display=swap" rel="stylesheet" />
+
+  <!-- Required animation libraries -->
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body class="is-loading">
+  <noscript>
+    <div class="noscript">JavaScript is required to view this experience.</div>
+  </noscript>
+
+  <div class="preloader" aria-hidden="true">
+    <div class="preloader__inner">
+      <div class="preloader__brand">سَمْت <span>SAMT</span></div>
+      <div class="preloader__line"><i></i></div>
+      <div class="preloader__meta"><span>STRATEGIC AVIATION</span><span id="loaderPercent">0%</span></div>
+    </div>
+  </div>
+
+  <div class="ambient" aria-hidden="true">
+    <canvas id="particleCanvas"></canvas>
+    <div class="ambient__glow ambient__glow--violet"></div>
+    <div class="ambient__glow ambient__glow--cyan"></div>
+    <div class="ambient__grid"></div>
+  </div>
+  <div class="grain" aria-hidden="true"></div>
+  <div class="cursor-halo" id="cursorHalo" aria-hidden="true"></div>
+
+  <div class="page-progress" aria-hidden="true"><span></span></div>
+
+  <header class="site-header" id="siteHeader">
+    <a class="brand" href="#home" aria-label="SAMT home">
+      <span class="brand__mark" aria-hidden="true">س</span>
+      <span class="brand__copy">
+        <b>سَمْت <em>SAMT</em></b>
+        <small data-i18n="brandSub">STRATEGIC AVIATION MANAGEMENT &amp; TRANSFORMATION</small>
+      </span>
+    </a>
+
+    <nav class="site-nav" id="siteNav" aria-label="Primary navigation">
+      <a href="#programme" data-i18n="navProgram">البرنامج</a>
+      <a href="#journey" data-i18n="navJourney">الرحلة</a>
+      <a href="#selection" data-i18n="navSelection">الاختيار</a>
+      <a href="#stations" data-i18n="navStations">محطات الإعداد</a>
+      <a href="#impact" data-i18n="navImpact">الأثر</a>
+    </nav>
+
+    <div class="header-actions">
+      <button class="lang-toggle" id="langToggle" type="button" aria-label="Switch language">EN</button>
+      <button class="menu-toggle" id="menuToggle" type="button" aria-expanded="false" aria-controls="siteNav" aria-label="Toggle menu">
+        <span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main id="main-scroll-container">
+    <!-- HERO -->
+    <section class="hero panel" id="home" aria-labelledby="heroTitle">
+      <div class="hero__frame" aria-hidden="true"></div>
+      <div class="hero__halo hero__halo--a" aria-hidden="true"></div>
+      <div class="hero__halo hero__halo--b" aria-hidden="true"></div>
+      <div class="hero__radar" aria-hidden="true"><i></i><i></i><i></i></div>
+
+      <div class="hero__content shell">
+        <p class="eyebrow hero__eyebrow" data-i18n="heroKicker">الزمالة الدولية لإعداد قادة منظومة الطيران</p>
+
+        <h1 class="hero__title" id="heroTitle" aria-label="Command the future">
+          <span class="hero__line"><span data-i18n="heroLine1">قُد</span></span>
+          <span class="hero__slash" aria-hidden="true"></span>
+          <span class="hero__line hero__line--offset"><span data-i18n="heroLine2">المستقبل</span></span>
+        </h1>
+
+        <div class="hero__lower">
+          <p class="hero__lead" data-i18n="heroLead">نُعِد نخبة قادرة على قيادة القدرات، ورفع الجاهزية، وصناعة القرار في البيئات المعقدة.</p>
+
+          <div class="hero__actions">
+            <a class="button button--light magnetic" href="#journey">
+              <span data-i18n="explore">استكشف الرحلة</span>
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
+            </a>
+            <button class="button button--ghost magnetic" type="button" data-modal-open="executiveModal">
+              <span data-i18n="executiveBrief">الملخص التنفيذي</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero__metrics shell" aria-label="Programme facts">
+        <article><strong>10</strong><span data-i18n="metric1">مشاركين من أصحاب الإمكانات العالية</span></article>
+        <article><strong>12+</strong><span data-i18n="metric2">أسبوعًا من الإعداد المتفرغ</span></article>
+        <article><strong>5+</strong><span data-i18n="metric3">سنوات خبرة عملية كحد أدنى</span></article>
+        <article><strong>01</strong><span data-i18n="metric4">مهمة: جاهزية قيادية مستدامة</span></article>
+      </div>
+
+      <div class="scroll-cue" aria-hidden="true">
+        <span data-i18n="scroll">SCROLL TO ENGAGE</span>
+        <i><b></b></i>
+      </div>
+    </section>
+
+    <!-- PROGRAMME -->
+    <section class="programme panel" id="programme" aria-labelledby="programmeTitle">
+      <div class="shell programme__layout">
+        <aside class="section-marker" aria-hidden="true"><span>01</span><b>PROGRAMME</b></aside>
+
+        <div class="programme__intro">
+          <p class="eyebrow split-reveal" data-i18n="programEyebrow">البرنامج في جوهره</p>
+          <h2 class="display-title split-reveal" id="programmeTitle" data-i18n="programHeading">من فكرة قيادية إلى قدرة مؤسسية.</h2>
+        </div>
+
+        <div class="programme__narrative">
+          <p class="lead-copy reveal-up" data-i18n="executiveSummaryText">زمالة قيادية انتقائية لإعداد عشرة من أصحاب الإمكانات العالية لقيادة منظومة الطيران ورفع جاهزيتها المستقبلية. يرتكز البرنامج على بناء الكفاءة القيادية، والفهم العملياتي، وإدارة القدرات، والتكامل المشترك، وصناعة القرار في البيئات المعقدة.</p>
+
+          <div class="programme__cards">
+            <article class="glass-card reveal-card">
+              <span class="card-index">A</span>
+              <h3 data-i18n="intentHeading">بناء قاعدة منتقاة من قادة المستقبل</h3>
+              <p data-i18n="intentText">بناء قاعدة منتقاة من قادة المستقبل في منظومة الطيران، تمتلك الكفاءة القيادية والفهم العملياتي والقدرة على إدارة القدرات وصناعة القرار.</p>
+            </article>
+            <article class="glass-card glass-card--signal reveal-card">
+              <span class="card-index">B</span>
+              <h3 data-i18n="readinessSignal">إشارة الجاهزية القيادية</h3>
+              <div class="signal-line"><i></i><i></i><i></i><i></i><i></i></div>
+              <p data-i18n="programmeSignalText">الخبرة العالمية تتحول إلى قرار، والقرار إلى قدرة، والقدرة إلى أثر قابل للقياس.</p>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- JOURNEY -->
+    <section class="journey" id="journey" aria-labelledby="journeyTitle">
+      <div class="journey__sticky">
+        <div class="shell journey__header">
+          <div>
+            <p class="eyebrow split-reveal" data-i18n="storyEyebrow">قصة بناء القائد</p>
+            <h2 class="display-title split-reveal" id="journeyTitle" data-i18n-html="storyTitle">من النشأة<br>إلى الأثر.</h2>
+          </div>
+          <p data-i18n="storyIntro">لا تُبنى القيادة بمحاضرة أو زيارة قصيرة. تبدأ باختيار صارم، ثم تأسيس وطني، فمحطات إعداد دولية، ثم اختبار للنضج، وتنتهي بقدرة تعود إلى المؤسسة وتُقاس بنتائجها.</p>
+        </div>
+
+        <div class="journey__track" id="journeyTrack">
+          <article class="journey-card journey-card--01">
+            <div class="journey-card__visual"><span>01</span><div class="journey-card__shape shape-orbit"></div></div>
+            <div class="journey-card__copy">
+              <p data-i18n="path1">الاختيار</p>
+              <h3 data-i18n="chapter1Title">النشأة — اكتشاف الإمكانات القيادية</h3>
+              <p data-i18n="chapter1Text">تبدأ الرحلة من قاعدة واسعة من المرشحين ذوي الأداء العالي، ثم تُختبر قدرتهم على التفكير، والتعلم، والعمل الجماعي، واتخاذ القرار تحت الضغط.</p>
+              <div class="tag-row"><span data-i18n="tagNomination">ترشيح مؤسسي</span><span data-i18n="tagAssessment">مركز تقييم</span><span data-i18n="tagInterview">مقابلات مُنظَّمة</span></div>
+            </div>
+          </article>
+
+          <article class="journey-card journey-card--02">
+            <div class="journey-card__visual"><span>02</span><div class="journey-card__shape shape-grid"></div></div>
+            <div class="journey-card__copy">
+              <p data-i18n="path2">التأسيس</p>
+              <h3 data-i18n="chapter2Title">التأسيس — فهم الدولة والمنظومة</h3>
+              <p data-i18n="chapter2Text">ينطلق الإعداد داخل دولة الإمارات لبناء أساس استراتيجي موحد: مفهوم القوة الجوية، تطوير القدرات، الصناعة الوطنية، الجاهزية، والقيادة المشتركة.</p>
+              <div class="tag-row"><span data-i18n="tagNational">إعداد وطني</span><span data-i18n="tagShadowing">إلحاق مهني</span><span data-i18n="tagMentoring">توجيه قيادي</span></div>
+            </div>
+          </article>
+
+          <article class="journey-card journey-card--03">
+            <div class="journey-card__visual"><span>03</span><div class="journey-card__shape shape-route"></div></div>
+            <div class="journey-card__copy">
+              <p data-i18n="path3">التطور</p>
+              <h3 data-i18n="chapter3Title">التطور — محطات إعداد دولية مصممة</h3>
+              <p data-i18n="chapter3Text">ينتقل المشاركون إلى برامج معدة مسبقًا في المملكة المتحدة وفرنسا والولايات المتحدة تشمل تدريبًا مكثفًا، وإلحاقًا مهنيًا، وورش عمل، وتفاعلًا مع القيادات.</p>
+              <div class="tag-row"><span data-i18n="tagUK">المملكة المتحدة</span><span data-i18n="tagFrance">فرنسا</span><span data-i18n="tagUSA">الولايات المتحدة</span></div>
+            </div>
+          </article>
+
+          <article class="journey-card journey-card--04">
+            <div class="journey-card__visual"><span>04</span><div class="journey-card__shape shape-core"></div></div>
+            <div class="journey-card__copy">
+              <p data-i18n="path4">النضج</p>
+              <h3 data-i18n="chapter4Title">النضج — تحويل المعرفة إلى قرار</h3>
+              <p data-i18n="chapter4Text">يُختبر المشاركون في سيناريوهات قيادية معقدة تتطلب الموازنة بين المهمة والموارد والمخاطر والشراكات.</p>
+              <div class="tag-row"><span data-i18n="tagWargame">تمارين قرار</span><span data-i18n="tagExecutive">إحاطات تنفيذية</span><span data-i18n="tagEvidence">تقييم بالأدلة</span></div>
+            </div>
+          </article>
+
+          <article class="journey-card journey-card--05">
+            <div class="journey-card__visual"><span>05</span><div class="journey-card__shape shape-impact"></div></div>
+            <div class="journey-card__copy">
+              <p data-i18n="path5">الأثر</p>
+              <h3 data-i18n="chapter5Title">المخرجات — أثر يعود إلى المؤسسة</h3>
+              <p data-i18n="chapter5Text">تختتم الزمالة بمشاريع أثر مؤسسية، وإحاطة أمام القيادة، وخطة متابعة بعد التخرج. النجاح ليس شهادة، بل تحسين قابل للقياس.</p>
+              <div class="tag-row"><span data-i18n="tagProjects">مشاريع أثر</span><span data-i18n="tagLeadershipBoard">عرض أمام القيادة</span><span data-i18n="tagFollowup">متابعة 12 شهرًا</span></div>
+            </div>
+          </article>
+        </div>
+
+        <div class="journey__progress shell" aria-hidden="true"><span></span></div>
+      </div>
+    </section>
+
+    <!-- SELECTION -->
+    <section class="selection panel" id="selection" aria-labelledby="selectionTitle">
+      <div class="shell selection__layout">
+        <div class="selection__copy">
+          <p class="eyebrow split-reveal" data-i18n="selectionEyebrow">اختيار نخبة النخبة</p>
+          <h2 class="display-title split-reveal" id="selectionTitle" data-i18n="selectionHeading">الاختيار امتياز قيادي، لا مقعد تدريبي.</h2>
+          <p class="lead-copy reveal-up" data-i18n="selectionIntro">يستهدف البرنامج العاملين في منظومة الطيران من مختلف التخصصات التشغيلية والهندسية والفنية والإدارية، شريطة امتلاك خبرة عملية مثبتة وإمكانات قيادية قابلة للتطوير.</p>
+        </div>
+
+        <div class="selection__orbit" aria-label="Multidisciplinary cohort">
+          <div class="orbit orbit--outer"></div><div class="orbit orbit--middle"></div><div class="orbit orbit--inner"></div>
+          <div class="orbit-core"><strong>10</strong><span data-i18n="orbitCoreText">قادة مستقبليون</span></div>
+          <span class="orbit-label orbit-label--1" data-i18n="orbit1">طيارون</span>
+          <span class="orbit-label orbit-label--2" data-i18n="orbit2">مهندسون</span>
+          <span class="orbit-label orbit-label--3" data-i18n="orbit3">إداريون</span>
+          <span class="orbit-label orbit-label--4" data-i18n="orbit4">إمداد وعقود</span>
+          <span class="orbit-label orbit-label--5" data-i18n="orbit5">عمليات</span>
+          <span class="orbit-label orbit-label--6" data-i18n="orbit6">تدريب</span>
+          <span class="orbit-label orbit-label--7" data-i18n="orbit7">سلامة</span>
+          <span class="orbit-label orbit-label--8" data-i18n="orbit8">تخطيط</span>
+        </div>
+      </div>
+
+      <div class="shell selection-gates">
+        <article><span>01</span><h3 data-i18n="criterion1Title">الأهلية والخبرة</h3><p data-i18n="criterion1Text">خبرة عملية لا تقل عن خمس سنوات وسجل أداء موثق.</p></article>
+        <article><span>02</span><h3 data-i18n="criterion2Title">التفكير والتحليل</h3><p data-i18n="criterion2Text">اختبارات التفكير الاستراتيجي، وحل المشكلات، وصناعة القرار.</p></article>
+        <article><span>03</span><h3 data-i18n="criterion3Title">السلوك القيادي</h3><p data-i18n="criterion3Text">تمارين جماعية ومواقف عملية داخل مركز تقييم تنافسي.</p></article>
+        <article><span>04</span><h3 data-i18n="criterion4Title">المقابلة التنفيذية</h3><p data-i18n="criterion4Text">مقابلة منظمة تقيس الدافع والقابلية للتعلم والتواضع القيادي.</p></article>
+        <article><span>05</span><h3 data-i18n="criterion5Title">الاعتماد النهائي</h3><p data-i18n="criterion5Text">اختيار عشرة مرشحين بواسطة لجنة مستقلة متعددة التخصصات.</p></article>
+      </div>
+    </section>
+
+    <!-- STATIONS -->
+    <section class="stations" id="stations" aria-labelledby="stationsTitle">
+      <div class="stations__sticky">
+        <div class="shell stations__heading">
+          <div>
+            <p class="eyebrow split-reveal" data-i18n="stationsEyebrow">محطات الإعداد</p>
+            <h2 class="display-title split-reveal" id="stationsTitle" data-i18n="stationsHeading">كل محطة لها غاية، ومهمة، ودليل تقييم.</h2>
+          </div>
+          <p data-i18n="stationsIntro">لا تعتمد المحطات على الزيارات البروتوكولية؛ بل على برامج يومية متفق عليها مسبقًا، يقودها خبراء وموجهون، وتنتهي بمخرجات عملية وتقييم رسمي.</p>
+        </div>
+
+        <div class="station-console shell">
+          <div class="station-nav" role="tablist" aria-label="Preparation stations">
+            <button class="station-tab is-active" type="button" data-station="uae" role="tab" aria-selected="true"><span>01</span><b data-i18n="tabUAE">الإمارات</b></button>
+            <button class="station-tab" type="button" data-station="uk" role="tab" aria-selected="false"><span>02</span><b data-i18n="tabUK">المملكة المتحدة</b></button>
+            <button class="station-tab" type="button" data-station="france" role="tab" aria-selected="false"><span>03</span><b data-i18n="tabFrance">فرنسا</b></button>
+            <button class="station-tab" type="button" data-station="usa" role="tab" aria-selected="false"><span>04</span><b data-i18n="tabUSA">الولايات المتحدة</b></button>
+            <button class="station-tab" type="button" data-station="return" role="tab" aria-selected="false"><span>05</span><b data-i18n="tabReturn">العودة والأثر</b></button>
+            <div class="station-nav__line" aria-hidden="true"><i></i></div>
+          </div>
+
+          <div class="station-stage">
+            <div class="station-media" id="stationMedia">
+              <img id="stationImage" src="assets/stations/uae.svg" alt="Animated UAE preparation station" />
+              <div class="station-media__scrim"></div>
+              <div class="station-media__code" id="stationCode">STATION 01 / UAE</div>
+            </div>
+
+            <article class="station-copy" id="stationCopy">
+              <p class="station-kicker" id="stationNumber">STATION 01</p>
+              <h3 id="stationTitle">دولة الإمارات العربية المتحدة</h3>
+              <p id="stationDescription">مرحلة التأسيس الوطني تبني فهمًا مشتركًا للدولة ومنظومة الطيران والدفاع والصناعة.</p>
+
+              <div class="station-facts">
+                <div><strong id="stationFact1">التأسيس</strong><span id="stationFact1Label">خط أساس استراتيجي موحد</span></div>
+                <div><strong id="stationFact2">يومي</strong><span id="stationFact2Label">توجيه ومهام وتقييم</span></div>
+              </div>
+
+              <ul id="stationPoints"></ul>
+
+              <div class="station-controls">
+                <button type="button" id="stationPrev" aria-label="Previous station">←</button>
+                <button type="button" id="stationNext" aria-label="Next station">→</button>
+              </div>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- COMPETENCIES -->
+    <section class="competencies panel" id="competencies" aria-labelledby="competenciesTitle">
+      <div class="shell">
+        <div class="section-heading-two">
+          <div>
+            <p class="eyebrow split-reveal" data-i18n="competencyEyebrow">جدارات النضج القيادي</p>
+            <h2 class="display-title split-reveal" id="competenciesTitle" data-i18n="competencyHeading">القائد الذي تفهمه المنظومة وتثق بقراره.</h2>
+          </div>
+          <span aria-hidden="true">06</span>
+        </div>
+
+        <div class="competency-grid">
+          <article class="competency-card"><span>01</span><h3 data-i18n="comp1Title">القيادة الاستراتيجية</h3><p data-i18n="comp1Text">قراءة البيئة، تحديد الأولويات، وربط القرار بالمهمة والجاهزية المستقبلية.</p></article>
+          <article class="competency-card"><span>02</span><h3 data-i18n="comp2Title">الفهم العملياتي</h3><p data-i18n="comp2Text">فهم أثر القرار على العمليات، الأطقم، السلامة، الاستدامة، والتكامل المشترك.</p></article>
+          <article class="competency-card"><span>03</span><h3 data-i18n="comp3Title">إدارة القدرات</h3><p data-i18n="comp3Text">قيادة دورة حياة القدرة من تحديد الاحتياج إلى الإدخال للخدمة والتطوير والخروج.</p></article>
+          <article class="competency-card"><span>04</span><h3 data-i18n="comp4Title">التكامل المشترك</h3><p data-i18n="comp4Text">التنسيق بين العمليات والهندسة والإمداد والتدريب والشركاء لتحقيق أثر موحد.</p></article>
+          <article class="competency-card"><span>05</span><h3 data-i18n="comp5Title">صناعة القرار</h3><p data-i18n="comp5Text">الموازنة بين المهمة والمخاطر والموارد والوقت ضمن بيئات معقدة وغير مكتملة المعلومات.</p></article>
+          <article class="competency-card"><span>06</span><h3 data-i18n="comp6Title">التأثير التنفيذي</h3><p data-i18n="comp6Text">إيصال الحجة، بناء التحالفات، وتحويل الرؤية إلى قرار ومسؤوليات ومتابعة.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ASSESSMENT -->
+    <section class="assessment panel" id="assessment" aria-labelledby="assessmentTitle">
+      <div class="shell assessment__layout">
+        <div class="assessment__heading">
+          <p class="eyebrow split-reveal" data-i18n="assessmentEyebrow">التقييم والحوكمة</p>
+          <h2 class="display-title split-reveal" id="assessmentTitle" data-i18n="assessmentHeading">لا اجتياز دون دليل. ولا تنفيذ دون حوكمة.</h2>
+        </div>
+
+        <div class="assessment__flow">
+          <article><span>01</span><div><h3 data-i18n="flow1">خط الأساس</h3><p data-i18n="flow1Text">قدرات قبلية</p></div><i style="--progress:20%"></i></article>
+          <article><span>02</span><div><h3 data-i18n="flow2">الأداء اليومي</h3><p data-i18n="flow2Text">مهام وسلوك</p></div><i style="--progress:40%"></i></article>
+          <article><span>03</span><div><h3 data-i18n="flow3">تقييم الجهات</h3><p data-i18n="flow3Text">أدلة مستقلة</p></div><i style="--progress:60%"></i></article>
+          <article><span>04</span><div><h3 data-i18n="flow4">اختبار النضج</h3><p data-i18n="flow4Text">قرار وإحاطة</p></div><i style="--progress:80%"></i></article>
+          <article><span>05</span><div><h3 data-i18n="flow5">مشروع الأثر</h3><p data-i18n="flow5Text">نتيجة مؤسسية</p></div><i style="--progress:100%"></i></article>
+        </div>
+
+        <div class="governance-map" aria-label="Programme governance">
+          <div class="governance-map__core"><strong data-i18n="govCore">حوكمة البرنامج</strong><span data-i18n="govCoreSub">قرار · رقابة · أثر</span></div>
+          <span class="gov-node gov-node--1" data-i18n="gov1">الراعي التنفيذي</span>
+          <span class="gov-node gov-node--2" data-i18n="gov2">اللجنة التوجيهية</span>
+          <span class="gov-node gov-node--3" data-i18n="gov3">مدير البرنامج</span>
+          <span class="gov-node gov-node--4" data-i18n="gov4">مراجع مستقل</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- IMPACT -->
+    <section class="impact panel" id="impact" aria-labelledby="impactTitle">
+      <div class="shell impact__header">
+        <p class="eyebrow split-reveal" data-i18n="impactEyebrow">المخرجات والأثر</p>
+        <h2 class="impact__title split-reveal" id="impactTitle" data-i18n="impactHeading">البرنامج ينتهي. القدرة تبدأ.</h2>
+        <p class="lead-copy reveal-up" data-i18n="impactIntro">تُقاس القيمة بما يتغير داخل المؤسسة بعد عودة المشاركين، وليس بعدد الأيام أو الجهات التي تمت مقابلتها.</p>
+      </div>
+
+      <div class="shell impact-grid">
+        <article><span>01</span><h3 data-i18n="impact1Title">مشاريع أثر مؤسسية</h3><p data-i18n="impact1Text">ثلاثة تحديات ذات أولوية تعالج الجاهزية أو القدرات أو الاستدامة أو التدريب.</p></article>
+        <article><span>02</span><h3 data-i18n="impact2Title">إحاطة قيادية نهائية</h3><p data-i18n="impact2Text">حجة مبنية على الأدلة، وخيارات واضحة، وتوصية قابلة للاعتماد والتنفيذ.</p></article>
+        <article><span>03</span><h3 data-i18n="impact3Title">ملف قيادة فردي</h3><p data-i18n="impact3Text">سجل موثق لتطور الجدارات، ومواطن القوة، وخطة التعيين والتطوير التالية.</p></article>
+        <article><span>04</span><h3 data-i18n="impact4Title">متابعة ما بعد التخرج</h3><p data-i18n="impact4Text">قياس الأثر بعد ستة واثني عشر شهرًا وربطه بالأدوار والنتائج المؤسسية.</p></article>
+      </div>
+
+      <div class="shell approval-block">
+        <div>
+          <p class="eyebrow" data-i18n="approvalEyebrow">قرار القيادة</p>
+          <h3 data-i18n="approvalTitle">القرار المطلوب من القيادة</h3>
+          <p data-i18n="approvalText">اعتماد مفهوم الزمالة، وتفويض إعداد الخطة التنفيذية والتنسيق الرسمي مع الجهات المستهدفة، وتطوير تقدير التكلفة والجدول التفصيلي.</p>
+        </div>
+        <button class="button button--light magnetic" type="button" data-modal-open="approvalModal"><span data-i18n="reviewProgramme">مراجعة البرنامج</span></button>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="shell site-footer__top">
+      <div class="footer-brand"><strong>سَمْت <span>SAMT</span></strong><p data-i18n="footerText">الزمالة الدولية لإعداد قادة منظومة الطيران — مسار انتقائي يحول التعلم والخبرة إلى جاهزية قيادية وأثر عملياتي مستدام.</p></div>
+      <a href="#home" class="back-top">↑ <span data-i18n="backTop">العودة للأعلى</span></a>
+    </div>
+    <div class="shell site-footer__bottom"><span>© 2026 SAMT</span><span data-i18n="footerDisclaimer">تصميم تجريبي لعرض مفهوم البرنامج — لا يمثل شراكات أو التزامات مؤكدة.</span></div>
+  </footer>
+
+  <!-- Executive summary modal -->
+  <div class="modal" id="executiveModal" role="dialog" aria-modal="true" aria-labelledby="executiveModalTitle" hidden>
+    <div class="modal__backdrop" data-modal-close></div>
+    <div class="modal__panel">
+      <button class="modal__close" type="button" data-modal-close aria-label="Close">×</button>
+      <p class="eyebrow" data-i18n="executiveSummaryTitle">الملخص التنفيذي</p>
+      <h2 id="executiveModalTitle" data-i18n="executiveSummaryHeading">زمالة قيادية انتقائية لرفع الجاهزية المستقبلية</h2>
+      <p data-i18n="executiveSummaryText">زمالة قيادية انتقائية لإعداد عشرة من أصحاب الإمكانات العالية لقيادة منظومة الطيران ورفع جاهزيتها المستقبلية.</p>
+    </div>
+  </div>
+
+  <!-- Approval modal -->
+  <div class="modal" id="approvalModal" role="dialog" aria-modal="true" aria-labelledby="approvalModalTitle" hidden>
+    <div class="modal__backdrop" data-modal-close></div>
+    <div class="modal__panel modal__panel--wide">
+      <button class="modal__close" type="button" data-modal-close aria-label="Close">×</button>
+      <p class="eyebrow" data-i18n="approvalEyebrow">قرار القيادة</p>
+      <h2 id="approvalModalTitle" data-i18n="approvalTitle">القرار المطلوب من القيادة</h2>
+      <p data-i18n="approvalText">اعتماد مفهوم الزمالة، وتفويض إعداد الخطة التنفيذية والتنسيق الرسمي مع الجهات المستهدفة، وتطوير تقدير التكلفة والجدول التفصيلي.</p>
+      <div class="modal__decision-grid">
+        <article><span>01</span><h3 data-i18n="decision1Title">اعتماد المفهوم</h3><p data-i18n="decision1Text">الموافقة على الإطار العام والأهداف والنتائج المستهدفة.</p></article>
+        <article><span>02</span><h3 data-i18n="decision2Title">تفويض التخطيط</h3><p data-i18n="decision2Text">إعداد الخطة التنفيذية والتكلفة والجدول التفصيلي.</p></article>
+        <article><span>03</span><h3 data-i18n="decision3Title">العودة للاعتماد</h3><p data-i18n="decision3Text">عرض النسخة النهائية والميزانية قبل أي التزام.</p></article>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
